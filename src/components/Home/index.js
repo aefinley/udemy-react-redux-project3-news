@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { latestNews, otherNews } from '../../store/actions';
 
+//sections
+import LatestNews from './LatestNews';
+import OtherNews from './OtherNews';
+
 class Home extends Component {
 
     componentDidMount(){
@@ -10,11 +14,12 @@ class Home extends Component {
     }
 
     render() {
-        console.log(this.props)
+        const articles = this.props.articles;
         return (
-            <div>
-                Home
-            </div>
+            <>
+                <LatestNews latest={articles.latest}/> 
+                <OtherNews otherNews={articles.otherNews}/>
+            </>
         )
     }
 }
