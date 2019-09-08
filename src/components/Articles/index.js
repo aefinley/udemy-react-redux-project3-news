@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getArticleData, handleArticleLikes } from '../../store/actions';
+import { 
+    getArticleData, 
+    handleArticleLikes,
+    clearArticleData
+} from '../../store/actions';
 
 //components
 import LikesCounter from './Likes';
@@ -9,6 +13,10 @@ class Article extends Component {
 
     componentDidMount() {
         this.props.dispatch(getArticleData(this.props.match.params.id))
+    }
+
+    componentWillUnmount() {
+        this.props.dispatch(clearArticleData())
     }
 
     addLike = (action) => {
@@ -68,7 +76,6 @@ class Article extends Component {
     )
 
     render() {
-        console.log(this.props.articles)
         return (
             <div className="news_container">
                 {this.renderNews(this.props.articles)}

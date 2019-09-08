@@ -4,7 +4,8 @@ import {
     GET_LATEST, 
     GET_OTHER, 
     GET_ARTICLE_DATA,
-    HANDLE_LIKES_ARTICLE
+    HANDLE_LIKES_ARTICLE,
+    CLEAR_ARTICLE_DATA
 } from '../types';
 
 const URL_ARTICLES = 'http://localhost:3004/articles';
@@ -54,6 +55,14 @@ export function handleArticleLikes(newLikes, id) {
     return {
         type: HANDLE_LIKES_ARTICLE,
         payload: request
+    }
+}
+
+export function clearArticleData() {
+
+    return {
+        type: CLEAR_ARTICLE_DATA,
+        payload: null
     }
 }
 
