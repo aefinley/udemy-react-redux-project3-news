@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getArticleData } from '../../store/actions';
+import { getArticleData, handleArticleLikes } from '../../store/actions';
+
+//components
+import LikesCounter from './Likes';
 
 class Article extends Component {
 
     componentDidMount() {
         this.props.dispatch(getArticleData(this.props.match.params.id))
+    }
+
+    addLike = (action) => {
+        const id = this.props.match.params.id;
+        const data = this.props.articles.articleData[0];
+
+        const likes = data.likes[0];
+        const dislikes = data.likes[1];
+
+        const newLikes = action === 'ADD' ? 
+            [likes + 1, dislikes] : [likes, dislikes + 1]
+
+        //go to dispatch
+        this.props.dispatch(handleArticleLikes(newLikes, id))
     }
 
     renderNews = ({articleData}) => (
@@ -38,6 +55,13 @@ class Article extends Component {
                 ></img>
                 <div className="body_news">
                     {articleData[0].body}
+                </div>
+                <div>
+                    <LikesCounter 
+                        addLike={ (args) => this.addLike(args) }
+                        likes={articleData[0].likes[0]}
+                        dislikes={articleData[0].likes[1]}
+                    />
                 </div>
             </div>  
         : null

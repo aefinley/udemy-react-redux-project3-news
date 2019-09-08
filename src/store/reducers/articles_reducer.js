@@ -1,4 +1,9 @@
-import { GET_LATEST, GET_OTHER, GET_ARTICLE_DATA } from "../types";
+import { 
+    GET_LATEST, 
+    GET_OTHER, 
+    GET_ARTICLE_DATA,
+    HANDLE_LIKES_ARTICLE
+} from "../types";
 
 export default function(state={}, action) {
     switch(action.type){
@@ -8,6 +13,8 @@ export default function(state={}, action) {
             return {...state, otherNews:action.payload}
         case GET_ARTICLE_DATA:
             return {...state, articleData:action.payload}
+        case HANDLE_LIKES_ARTICLE:
+            return {...state, articleData: [action.payload]}
         default:
             return state
     }
