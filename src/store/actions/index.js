@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_LATEST, GET_OTHER } from '../types';
+import { GET_LATEST, GET_OTHER, GET_ARTICLE_DATA } from '../types';
 
 const URL_ARTICLES = 'http://localhost:3004/articles';
 
@@ -22,5 +22,16 @@ export function otherNews() {
         type: GET_OTHER,
         payload: request
     }
+}
+
+export function getArticleData(id) {
+
+    const request = axios.get(`${URL_ARTICLES}?id=${id}`).then(response => response.data)
+
+    return {
+        type: GET_ARTICLE_DATA,
+        payload: request
+    }
+    
 }
 
