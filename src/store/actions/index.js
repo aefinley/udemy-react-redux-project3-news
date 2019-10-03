@@ -41,15 +41,15 @@ export function getArticleData(id) {
     
 }
 
-export function handleArticleLikes(newLikes, id) {
+export function handleArticleLikes(data, id) {
 
     const request = axios(`${URL_ARTICLES}/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json'
         },
-        data: JSON.stringify({likes: newLikes})
+        data: JSON.stringify(data)
     }).then(response => response.data)
 
     return {
