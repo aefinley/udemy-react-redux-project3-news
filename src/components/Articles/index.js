@@ -26,12 +26,7 @@ class Article extends Component {
         const likes = data.likes[0];
         const dislikes = data.likes[1];
 
-        // const newLikes = action === 'ADD' ? 
-        //     [likes + 1, dislikes] : [likes, dislikes + 1]
-
         action === 'ADD' ? data.likes[0] = likes + 1 : data.likes[1] = dislikes + 1
-
-        console.log(data);
 
         //go to dispatch
         this.props.dispatch(handleArticleLikes(data, id))
